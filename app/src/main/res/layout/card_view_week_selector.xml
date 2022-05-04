@@ -18,10 +18,10 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24" />
 
         <TextView
-            android:id="@+id/myText1"
+            android:id="@+id/weekTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2022-05-04 ~ 2022-05-07"
@@ -40,7 +40,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
