@@ -30,7 +30,7 @@ class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return Card.DECK.size
+        return 7
     }
 }
 

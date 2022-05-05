@@ -32,7 +32,7 @@ class CardViewTabLayoutActivity : CardViewActivity() {
 
         tabLayout = findViewById(R.id.tabs)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = Card.DECK[position].toString()
+            tab.text = DateUtility.getSubtitleDate(position)
         }.attach()
     }
 }
