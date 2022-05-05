@@ -34,15 +34,10 @@ import com.amazingtalker.assessment.R
 /** Inflates and populates a [View] representing a [Card]  */
 class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
     val view: View = layoutInflater.inflate(R.layout.item_card_layout, container, false)
-    private val textSuite: TextView
-    private val textCorner1: TextView
-    private val textCorner2: TextView
+
     private val recyclerView: RecyclerView
 
     init {
-        textSuite = view.findViewById(R.id.label_center)
-        textCorner1 = view.findViewById(R.id.label_top)
-        textCorner2 = view.findViewById(R.id.label_bottom)
         // getting the recyclerview by its id
         recyclerView = view.findViewById<RecyclerView>(R.id.courses_recyclerview)
         // this creates a vertical layout Manager
@@ -53,12 +48,8 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
      * Updates the view to represent the passed in card
      */
     fun bind(card: Card) {
-        textSuite.text = card.suit
-        view.setBackgroundResource(getColorRes(card))
 
-        val cornerLabel = card.cornerLabel
-        textCorner1.text = cornerLabel
-        textCorner2.text = cornerLabel
+        view.setBackgroundResource(getColorRes(card))
 
         // ArrayList of class ItemsViewModel
         val data = ArrayList<ItemsViewModel>()
@@ -74,7 +65,6 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
 
         // Setting the Adapter with the recyclerview
         recyclerView.adapter = adapter
-
     }
 
     @ColorRes
