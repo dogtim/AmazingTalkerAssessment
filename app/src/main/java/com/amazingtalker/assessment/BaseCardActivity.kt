@@ -17,10 +17,16 @@
 package com.amazingtalker.assessment
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.cards.CardViewAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.amazingtalker.assessment.data.Courses
+import com.android.volley.Request
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.google.gson.Gson
 
 /**
  * Base class for the two activities in the demo. Sets up the list of cards and implements UI to
@@ -49,22 +55,41 @@ abstract class BaseCardActivity : FragmentActivity() {
 
         rightArrowImage.setOnClickListener {
             adapter.offset += 7;
-            weekTitle.text = DateUtility.getSevenString(adapter.offset)
-            viewPager.adapter?.notifyItemRangeChanged(0, 7)
-            //viewPager.setCurrentItem(offset, true)
+            dataChanged()
         }
 
         leftArrowImage.setOnClickListener {
             if (adapter.offset > 0) {
                 adapter.offset -= 7;
-                weekTitle.text = DateUtility.getSevenString(adapter.offset)
-                viewPager.adapter?.notifyItemRangeChanged(0, 7)
-                //viewPager.setCurrentItem(offset, true)
+                dataChanged()
             }
         }
 
         weekTitle.text = DateUtility.getSevenString(adapter.offset)
         viewPager.adapter = adapter
+        network()
     }
 
+    private fun dataChanged() {
+        weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        viewPager.adapter?.notifyItemRangeChanged(0, 7)
+    }
+
+    private fun network() {
+        val queue = Volley.newRequestQueue(this)
+        val url = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-04-30T16%3A00%3A00.000Z"
+
+        val stringRequest = StringRequest(
+            Request.Method.GET, url, { response ->
+                // Display the first 500 characters of the response string.
+                val gson = Gson()
+                val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
+                //assertEquals("2022-05-07T00:30:00Z", )
+                coursesObject.available?.get(0)?.start?.let { Log.i("dogtim", it) }
+            }, {
+                Log.e("dogtim",  "That didn't work! " + it.message) }
+        )
+
+        queue.add(stringRequest)
+    }
 }
