@@ -19,7 +19,6 @@ package com.amazingtalker.assessment
 import android.os.Bundle
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.integration.testapp.cards.Card
 import androidx.viewpager2.integration.testapp.cards.CardViewAdapter
 import androidx.viewpager2.widget.ViewPager2
 
@@ -30,8 +29,6 @@ import androidx.viewpager2.widget.ViewPager2
 abstract class BaseCardActivity : FragmentActivity() {
 
     protected lateinit var viewPager: ViewPager2
-    private lateinit var cardSelector: Spinner
-    private lateinit var gotoPage: Button
     private lateinit var weekTitle: TextView
     private var offset = 0;
     private lateinit var rightArrowImage: ImageView
@@ -44,29 +41,22 @@ abstract class BaseCardActivity : FragmentActivity() {
         setContentView(layoutId)
 
         viewPager = findViewById(R.id.view_pager)
-        cardSelector = findViewById(R.id.card_spinner)
-        gotoPage = findViewById(R.id.jump_button)
+
         weekTitle = findViewById(R.id.weekTitle)
         rightArrowImage = findViewById(R.id.rightArrow)
         leftArrowImage = findViewById(R.id.leftArrow)
 
-        cardSelector.adapter = createCardAdapter()
-
-        gotoPage.setOnClickListener {
-            val card = cardSelector.selectedItemPosition
-            val smoothScroll = true
-            viewPager.setCurrentItem(card, smoothScroll)
-        }
-
         rightArrowImage.setOnClickListener {
             offset ++;
             weekTitle.text = DateUtility.getDateString(offset)
+            viewPager.setCurrentItem(offset, true)
         }
 
         leftArrowImage.setOnClickListener {
             if (offset > 0) {
                 offset--;
                 weekTitle.text = DateUtility.getDateString(offset)
+                viewPager.setCurrentItem(offset, true)
             }
         }
 
@@ -74,9 +64,4 @@ abstract class BaseCardActivity : FragmentActivity() {
         viewPager.adapter = CardViewAdapter()
     }
 
-    private fun createCardAdapter(): SpinnerAdapter {
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, Card.DECK)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        return adapter
-    }
 }
