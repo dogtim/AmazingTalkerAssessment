@@ -48,4 +48,11 @@
         android:textAppearance="@android:style/TextAppearance.Large"
         android:rotation="180"
         tools:text="A"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/courses_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:itemCount="5"
+        tools:listitem="@layout/card_view_design" />
 </FrameLayout>

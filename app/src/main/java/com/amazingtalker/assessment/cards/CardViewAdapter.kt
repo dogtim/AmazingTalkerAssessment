@@ -19,6 +19,7 @@ package androidx.viewpager2.integration.testapp.cards
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.amazingtalker.assessment.cards.CardView
 
 class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {

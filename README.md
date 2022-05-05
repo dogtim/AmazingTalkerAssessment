@@ -9,6 +9,7 @@
   - 2022/05/04 create the project and give simple layout
   - I should complete the assessment in three days, aka 72 hours, The deadline is on 2022/05/07 at 15:20
 ## TODO
+- To support English and Traditional Chinese
 - To support Landscape and Portrait
 - Test of Unit and Instrumentation
 - Add comment & UML chart

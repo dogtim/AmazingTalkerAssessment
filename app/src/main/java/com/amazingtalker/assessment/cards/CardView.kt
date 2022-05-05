@@ -14,14 +14,20 @@
  * limitations under the License.
  */
 
-package androidx.viewpager2.integration.testapp.cards
+package com.amazingtalker.assessment.cards
 
+import CoursesAdapter
+import CustomAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
 import androidx.annotation.ColorRes
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.integration.testapp.cards.Card
+import com.amazingtalker.assessment.ItemsViewModel
 
 import com.amazingtalker.assessment.R
 
@@ -31,11 +37,16 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
     private val textSuite: TextView
     private val textCorner1: TextView
     private val textCorner2: TextView
+    private val recyclerView: RecyclerView
 
     init {
         textSuite = view.findViewById(R.id.label_center)
         textCorner1 = view.findViewById(R.id.label_top)
         textCorner2 = view.findViewById(R.id.label_bottom)
+        // getting the recyclerview by its id
+        recyclerView = view.findViewById<RecyclerView>(R.id.courses_recyclerview)
+        // this creates a vertical layout Manager
+        recyclerView.layoutManager = LinearLayoutManager(view.context)
     }
 
     /**
@@ -48,6 +59,22 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
         val cornerLabel = card.cornerLabel
         textCorner1.text = cornerLabel
         textCorner2.text = cornerLabel
+
+        // ArrayList of class ItemsViewModel
+        val data = ArrayList<ItemsViewModel>()
+
+        // This loop will create 20 Views containing
+        // the image with the count of view
+        for (i in 1..20) {
+            data.add(ItemsViewModel(androidx.appcompat.R.drawable.abc_btn_check_to_on_mtrl_000, "Item " + i))
+        }
+
+        // This will pass the ArrayList to our Adapter
+        val adapter = CoursesAdapter(data)
+
+        // Setting the Adapter with the recyclerview
+        recyclerView.adapter = adapter
+
     }
 
     @ColorRes
