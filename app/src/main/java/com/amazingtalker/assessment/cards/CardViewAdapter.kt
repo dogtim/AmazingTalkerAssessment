@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package androidx.viewpager2.integration.testapp.cards
+package com.amazingtalker.assessment.cards
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.amazingtalker.assessment.cards.CardView
+import androidx.viewpager2.integration.testapp.cards.Card
 
 class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
+    public var offset = 0;
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(CardView(LayoutInflater.from(parent.context), parent))
     }

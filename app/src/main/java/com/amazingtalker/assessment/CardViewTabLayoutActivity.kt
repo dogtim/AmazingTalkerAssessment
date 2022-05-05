@@ -17,6 +17,7 @@
 package com.amazingtalker.assessment
 
 import android.os.Bundle
+import com.amazingtalker.assessment.cards.CardViewAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -31,7 +32,12 @@ class CardViewTabLayoutActivity : BaseCardActivity() {
 
         tabLayout = findViewById(R.id.tabs)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            tab.text = DateUtility.getSubtitleDate(position)
+            // TODO Tim, Let ? Optional semantic?
+            val adapter = viewPager.adapter
+            if (adapter is CardViewAdapter) {
+                tab.text = DateUtility.getSubtitleDate(adapter.offset)
+            }
+
         }.attach()
     }
 }

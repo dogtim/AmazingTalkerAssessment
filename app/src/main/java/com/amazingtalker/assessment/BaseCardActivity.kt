@@ -19,7 +19,7 @@ package com.amazingtalker.assessment
 import android.os.Bundle
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.integration.testapp.cards.CardViewAdapter
+import com.amazingtalker.assessment.cards.CardViewAdapter
 import androidx.viewpager2.widget.ViewPager2
 
 /**
@@ -30,16 +30,17 @@ abstract class BaseCardActivity : FragmentActivity() {
 
     protected lateinit var viewPager: ViewPager2
     private lateinit var weekTitle: TextView
-    private var offset = 0;
+
     private lateinit var rightArrowImage: ImageView
     private lateinit var leftArrowImage: ImageView
+    private lateinit var adapter: CardViewAdapter
 
     protected open val layoutId: Int = R.layout.activity_no_tablayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
-
+        adapter = CardViewAdapter()
         viewPager = findViewById(R.id.view_pager)
 
         weekTitle = findViewById(R.id.weekTitle)
@@ -47,21 +48,23 @@ abstract class BaseCardActivity : FragmentActivity() {
         leftArrowImage = findViewById(R.id.leftArrow)
 
         rightArrowImage.setOnClickListener {
-            offset ++;
-            weekTitle.text = DateUtility.getDateString(offset)
-            viewPager.setCurrentItem(offset, true)
+            adapter.offset += 7;
+            weekTitle.text = DateUtility.getSevenString(adapter.offset)
+            viewPager.adapter?.notifyItemRangeChanged(0, 7)
+            //viewPager.setCurrentItem(offset, true)
         }
 
         leftArrowImage.setOnClickListener {
-            if (offset > 0) {
-                offset--;
-                weekTitle.text = DateUtility.getDateString(offset)
-                viewPager.setCurrentItem(offset, true)
+            if (adapter.offset > 0) {
+                adapter.offset -= 7;
+                weekTitle.text = DateUtility.getSevenString(adapter.offset)
+                viewPager.adapter?.notifyItemRangeChanged(0, 7)
+                //viewPager.setCurrentItem(offset, true)
             }
         }
 
-        weekTitle.text = DateUtility.getDateString(offset)
-        viewPager.adapter = CardViewAdapter()
+        weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        viewPager.adapter = adapter
     }
 
 }

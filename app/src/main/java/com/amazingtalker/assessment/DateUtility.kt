@@ -21,6 +21,11 @@ object DateUtility {
         return getDayByFormat(offset, dateFormat)
     }
 
+    fun getSevenString(offset: Int = 0): String {
+        val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
+        return getDayByFormat(offset, dateFormat) + " ~ " + getDayByFormat(offset + 6, dateFormat)
+    }
+
     // Subtitle Template
     fun getSubtitleDate(offset: Int = 0): String {
         val dateFormat = SimpleDateFormat("EEE, MMM dd", Locale.getDefault())
