@@ -17,16 +17,11 @@
 package com.amazingtalker.assessment
 
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.integration.testapp.cards.Card
+import androidx.viewpager2.integration.testapp.cards.CardViewAdapter
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
-import androidx.viewpager2.widget.ViewPager2.ORIENTATION_VERTICAL
 
 /**
  * Base class for the two activities in the demo. Sets up the list of cards and implements UI to
@@ -37,6 +32,10 @@ abstract class BaseCardActivity : FragmentActivity() {
     protected lateinit var viewPager: ViewPager2
     private lateinit var cardSelector: Spinner
     private lateinit var gotoPage: Button
+    private lateinit var weekTitle: TextView
+    private var offset = 0;
+    private lateinit var rightArrowImage: ImageView
+    private lateinit var leftArrowImage: ImageView
 
     protected open val layoutId: Int = R.layout.activity_no_tablayout
 
@@ -47,6 +46,9 @@ abstract class BaseCardActivity : FragmentActivity() {
         viewPager = findViewById(R.id.view_pager)
         cardSelector = findViewById(R.id.card_spinner)
         gotoPage = findViewById(R.id.jump_button)
+        weekTitle = findViewById(R.id.weekTitle)
+        rightArrowImage = findViewById(R.id.rightArrow)
+        leftArrowImage = findViewById(R.id.leftArrow)
 
         cardSelector.adapter = createCardAdapter()
 
@@ -55,6 +57,21 @@ abstract class BaseCardActivity : FragmentActivity() {
             val smoothScroll = true
             viewPager.setCurrentItem(card, smoothScroll)
         }
+
+        rightArrowImage.setOnClickListener {
+            offset ++;
+            weekTitle.text = DateUtility.getDateString(offset)
+        }
+
+        leftArrowImage.setOnClickListener {
+            if (offset > 0) {
+                offset--;
+                weekTitle.text = DateUtility.getDateString(offset)
+            }
+        }
+
+        weekTitle.text = DateUtility.getDateString(offset)
+        viewPager.adapter = CardViewAdapter()
     }
 
     private fun createCardAdapter(): SpinnerAdapter {

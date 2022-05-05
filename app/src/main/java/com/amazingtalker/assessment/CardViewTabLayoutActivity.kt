@@ -17,11 +17,10 @@
 package com.amazingtalker.assessment
 
 import android.os.Bundle
-import androidx.viewpager2.integration.testapp.cards.Card
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class CardViewTabLayoutActivity : CardViewActivity() {
+class CardViewTabLayoutActivity : BaseCardActivity() {
 
     private lateinit var tabLayout: TabLayout
 
