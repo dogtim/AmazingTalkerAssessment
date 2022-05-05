@@ -5,8 +5,13 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_keyboard_arrow_left_24.xml" value="0.228" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.228" />
+        <entry key="app/src/main/res/layout-land/activity_tablayout.xml" value="0.1402116402116402" />
+        <entry key="app/src/main/res/layout-land/controls.xml" value="0.1402116402116402" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/activity_tablayout.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/card_view_design.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/controls.xml" value="0.165625" />
+        <entry key="app/src/main/res/layout/item_card_layout.xml" value="0.165625" />
         <entry key="app/src/main/res/layout/week_selector_cardview.xml" value="0.325" />
       </map>
     </option>
