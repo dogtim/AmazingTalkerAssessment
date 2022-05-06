@@ -35,7 +35,7 @@ class CardViewTabLayoutActivity : BaseCardActivity() {
             // TODO Tim, Let ? Optional semantic?
             val adapter = viewPager.adapter
             if (adapter is CardViewAdapter) {
-                tab.text = DateUtility.getSubtitleDate(adapter.offset)
+                tab.text = DateUtility.getSubtitleDate(adapter.offset + position)
             }
 
         }.attach()

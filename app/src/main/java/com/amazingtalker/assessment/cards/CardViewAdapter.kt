@@ -20,16 +20,21 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.integration.testapp.cards.Card
+import com.amazingtalker.assessment.data.Courses
+import com.amazingtalker.assessment.data.Timeline
 
 class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
     public var offset = 0;
+    public var courses: List<Timeline>? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         return CardViewHolder(CardView(LayoutInflater.from(parent.context), parent))
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
-        holder.bind(Card.DECK[position])
+        courses?.let {
+            holder.bind(Card.DECK[position])
+        }
     }
 
     override fun getItemCount(): Int {

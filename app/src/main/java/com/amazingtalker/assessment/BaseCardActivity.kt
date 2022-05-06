@@ -22,6 +22,7 @@ import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.cards.CardViewAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
@@ -77,7 +78,8 @@ abstract class BaseCardActivity : FragmentActivity() {
 
     private fun network() {
         val queue = Volley.newRequestQueue(this)
-        val url = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-04-30T16%3A00%3A00.000Z"
+        var url1 = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-04-30T16%3A00%3A00.000Z"
+        val url = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=" + DateUtility.getSpecial()
 
         val stringRequest = StringRequest(
             Request.Method.GET, url, { response ->
@@ -85,7 +87,9 @@ abstract class BaseCardActivity : FragmentActivity() {
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
                 //assertEquals("2022-05-07T00:30:00Z", )
-                coursesObject.available?.get(0)?.start?.let { Log.i("dogtim", it) }
+                Log.i("dogtim", "url: " + url)
+                adapter.courses = CourseUtilities.callMe(coursesObject)
+                coursesObject.available?.get(0)?.start?.let { Log.i("dogtim", "what " + it) }
             }, {
                 Log.e("dogtim",  "That didn't work! " + it.message) }
         )

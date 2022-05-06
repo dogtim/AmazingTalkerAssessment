@@ -25,6 +25,13 @@ object DateUtility {
             dateFormat.format(c.time)
         }
     }
+
+    // Title Template
+    fun getSpecial(offset: Int = 0): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        return getDayByFormat(offset, dateFormat)
+    }
+
     // Title Template
     fun getDateString(offset: Int = 0): String {
         val dateFormat = SimpleDateFormat("yyyy/MM/dd", Locale.getDefault())
