@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.*
@@ -15,7 +16,7 @@ import java.util.*
  */
 object DateUtility {
     const val DATE_PATTERN_1 = "yyyy-MM-dd"
-
+    val STANDARD_FORMAT = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
     fun getDayByFormat(offset: Int = 0, dateFormat: SimpleDateFormat): String {
         return if (offset == 0) {
             dateFormat.format(Date())
@@ -27,9 +28,18 @@ object DateUtility {
         }
     }
 
+    fun addHalfHour(dateString: String, minutes: Int): String {
+        val formatter = STANDARD_FORMAT
+        val date = formatter.parse(dateString)
+        val c = Calendar.getInstance()
+        c.time = date
+        c.add(Calendar.MINUTE, minutes)
+        return formatter.format(c.time)
+    }
+
     // Title Template
     fun getSpecial(offset: Int = 0): String {
-        val dateFormat = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
+        val dateFormat = STANDARD_FORMAT
         return getDayByFormat(offset, dateFormat)
     }
 

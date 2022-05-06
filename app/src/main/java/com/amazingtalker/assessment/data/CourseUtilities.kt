@@ -1,5 +1,6 @@
 package com.amazingtalker.assessment.data
 
+import com.amazingtalker.assessment.DateUtility
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -14,7 +15,20 @@ class CourseUtilities {
             val lambda = { a: List<Timeline>, available: Boolean ->
                 for (item in a) {
                     item.available = available
-                    mergedList.add(item)
+                    item.end?.let { endTime ->
+                        var temp = item.copy(
+                            start = item.start,
+                            end = item.end,
+                            available = item.available)
+                        while (temp.start != null && endTime != temp.start) {
+                            mergedList.add(temp)
+                            temp = item.copy(
+                                start = DateUtility.addHalfHour(temp.start!!, 30),
+                                end = item.end,
+                                available = item.available
+                            )
+                        }
+                    }
                 }
             }
 
