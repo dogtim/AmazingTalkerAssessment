@@ -37,55 +37,42 @@ import com.google.gson.Gson
 
 class CardViewTabLayoutActivity : FragmentActivity() {
     private val TAG = CardViewTabLayoutActivity::class.qualifiedName
-    private lateinit var viewPager: ViewPager2
-    private lateinit var rightArrowImage: ImageView
-    private lateinit var leftArrowImage: ImageView
     private lateinit var adapter: CardViewAdapter
-    private lateinit var tabLayout: TabLayout
     private lateinit var binding: ActivityTablayoutBinding
-
-    private val layoutId: Int = R.layout.activity_tablayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTablayoutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setContentView(layoutId)
         adapter = CardViewAdapter()
-        viewPager = findViewById(R.id.view_pager)
-        rightArrowImage = findViewById(R.id.rightArrow)
-        leftArrowImage = findViewById(R.id.leftArrow)
 
-        rightArrowImage.setOnClickListener {
+        binding.rightArrow.setOnClickListener {
             adapter.offset += 7;
             dataChanged()
         }
 
-        leftArrowImage.setOnClickListener {
+        binding.leftArrow.setOnClickListener {
             if (adapter.offset > 0) {
                 adapter.offset -= 7;
                 dataChanged()
             }
         }
-        binding.weekTitle?.text = DateUtility.getSevenString(adapter.offset)
-        viewPager.adapter = adapter
+        binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        binding.viewPager.adapter = adapter
         network()
 
-        tabLayout = findViewById(R.id.tabs)
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            // TODO Tim, Let ? Optional semantic?
-            val adapter = viewPager.adapter
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
+            val adapter = binding.viewPager.adapter
             if (adapter is CardViewAdapter) {
                 tab.text = DateUtility.getSubtitleDate(adapter.offset + position)
             }
-
         }.attach()
     }
 
     private fun dataChanged() {
-        binding.weekTitle?.text = DateUtility.getSevenString(adapter.offset)
-        viewPager.adapter?.notifyItemRangeChanged(0, 7)
+        binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        binding.viewPager.adapter?.notifyItemRangeChanged(0, 7)
     }
 
     private fun network() {
@@ -98,7 +85,7 @@ class CardViewTabLayoutActivity : FragmentActivity() {
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
                 adapter.courses = CourseUtilities.handle(coursesObject)
-                viewPager.adapter?.notifyItemRangeChanged(0, 7)
+                binding.viewPager.adapter?.notifyItemRangeChanged(0, 7)
             }, {
                 Log.e("dogtim",  "That didn't work! " + it.message) }
         )
