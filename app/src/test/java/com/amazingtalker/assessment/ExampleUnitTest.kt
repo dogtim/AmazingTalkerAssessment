@@ -2,14 +2,12 @@ package com.amazingtalker.assessment
 
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
-import com.amazingtalker.assessment.data.Timeline
 import com.google.gson.Gson
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.sql.Time
 import java.text.SimpleDateFormat
+import java.time.ZoneId
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -44,5 +42,12 @@ class ExampleUnitTest {
         val coursesObject: Courses = gson.fromJson(generalInfoJson, Courses::class.java)
 
         System.out.println("mergedList: " + CourseUtilities.handle(coursesObject).joinToString(" "))
+    }
+
+    @Test
+    fun timezone_verify() {
+        val dateStr = "2022-05-07T00:30:00Z"
+        val formattedDate = DateUtility.transformToLocalTime(dateStr, TimeZone.getTimeZone("Asia/Taipei"))
+        assertEquals(formattedDate.toString(), "2022-05-07T08:30:00Z")
     }
 }

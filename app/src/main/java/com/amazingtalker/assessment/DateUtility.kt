@@ -17,6 +17,16 @@ import java.util.*
 object DateUtility {
     const val DATE_PATTERN_1 = "yyyy-MM-dd"
     val STANDARD_FORMAT = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
+
+    fun transformToLocalTime(dateStr: String, zone: TimeZone = TimeZone.getDefault()): String {
+        val df = DateUtility.STANDARD_FORMAT
+        df.timeZone = TimeZone.getTimeZone("UTC")
+        val date = df.parse(dateStr)
+        df.timeZone = zone
+        val formattedDate = df.format(date)
+        return formattedDate.toString()
+    }
+
     fun getDayByFormat(offset: Int = 0, dateFormat: SimpleDateFormat): String {
         return if (offset == 0) {
             dateFormat.format(Date())

@@ -39,11 +39,22 @@ class CourseUtilities {
                 lambda(it, false)
             }
 
+            // Sort by start time
             val result = mergedList.sortedWith(compareBy {
                 it.start
             })
 
             return result
+        }
+        fun transformZone(timelines: List<Timeline>) = run {
+            for (item in timelines) {
+                item.start?.let {
+                    item.start = DateUtility.transformToLocalTime(it)
+                }
+                item.end?.let {
+                    item.end = DateUtility.transformToLocalTime(it)
+                }
+            }
         }
     }
 }

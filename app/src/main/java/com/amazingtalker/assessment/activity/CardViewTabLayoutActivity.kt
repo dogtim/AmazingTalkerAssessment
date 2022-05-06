@@ -20,20 +20,17 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.*
 import androidx.fragment.app.FragmentActivity
-import com.amazingtalker.assessment.cards.CardViewAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.amazingtalker.assessment.DateUtility
-import com.amazingtalker.assessment.R
+import com.amazingtalker.assessment.cards.CardViewAdapter
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
 import com.amazingtalker.assessment.databinding.ActivityTablayoutBinding
-import com.amazingtalker.assessment.databinding.ItemCardLayoutBinding
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
+import java.util.*
 
 class CardViewTabLayoutActivity : FragmentActivity() {
     private val TAG = CardViewTabLayoutActivity::class.qualifiedName
@@ -48,17 +45,21 @@ class CardViewTabLayoutActivity : FragmentActivity() {
         adapter = CardViewAdapter()
 
         binding.rightArrow.setOnClickListener {
-            adapter.offset += 7;
+            adapter.offset += 7
             dataChanged()
         }
 
         binding.leftArrow.setOnClickListener {
             if (adapter.offset > 0) {
-                adapter.offset -= 7;
+                adapter.offset -= 7
                 dataChanged()
             }
         }
         binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
+0
+        val tz: TimeZone = TimeZone.getDefault()
+        val timeZoneString = tz.id.toString() + ": " + tz.getDisplayName(false, TimeZone.SHORT)
+        binding.timeZone.text = timeZoneString
         binding.viewPager.adapter = adapter
         network()
 
@@ -84,7 +85,9 @@ class CardViewTabLayoutActivity : FragmentActivity() {
             Request.Method.GET, url, { response ->
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
-                adapter.courses = CourseUtilities.handle(coursesObject)
+                val tempList = CourseUtilities.handle(coursesObject)
+                CourseUtilities.transformZone(tempList)
+                adapter.courses = tempList
                 binding.viewPager.adapter?.notifyItemRangeChanged(0, 7)
             }, {
                 Log.e("dogtim",  "That didn't work! " + it.message) }
