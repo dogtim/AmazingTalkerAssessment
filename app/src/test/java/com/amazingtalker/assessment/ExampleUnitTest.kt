@@ -43,6 +43,6 @@ class ExampleUnitTest {
         val gson = Gson()
         val coursesObject: Courses = gson.fromJson(generalInfoJson, Courses::class.java)
 
-        System.out.println("mergedList: " + CourseUtilities.callMe(coursesObject).joinToString(" "))
+        System.out.println("mergedList: " + CourseUtilities.handle(coursesObject).joinToString(" "))
     }
 }
