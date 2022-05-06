@@ -16,7 +16,7 @@
 
 package com.amazingtalker.assessment.cards
 
-import CoursesAdapter
+import com.amazingtalker.assessment.adapter.CoursesAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
