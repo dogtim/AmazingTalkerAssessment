@@ -26,6 +26,8 @@ import com.amazingtalker.assessment.DateUtility
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
+import com.amazingtalker.assessment.databinding.ActivityTablayoutBinding
+import com.amazingtalker.assessment.databinding.ItemCardLayoutBinding
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
@@ -33,30 +35,25 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 
-/**
- * Base class for the two activities in the demo. Sets up the list of cards and implements UI to
- * jump to arbitrary cards using setCurrentItem, either with or without smooth scrolling.
- */
 class CardViewTabLayoutActivity : FragmentActivity() {
     private val TAG = CardViewTabLayoutActivity::class.qualifiedName
     private lateinit var viewPager: ViewPager2
-    private lateinit var weekTitle: TextView
-
     private lateinit var rightArrowImage: ImageView
     private lateinit var leftArrowImage: ImageView
     private lateinit var adapter: CardViewAdapter
     private lateinit var tabLayout: TabLayout
+    private lateinit var binding: ActivityTablayoutBinding
 
     private val layoutId: Int = R.layout.activity_tablayout
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding = ActivityTablayoutBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         setContentView(layoutId)
         adapter = CardViewAdapter()
         viewPager = findViewById(R.id.view_pager)
-
-        weekTitle = findViewById(R.id.weekTitle)
         rightArrowImage = findViewById(R.id.rightArrow)
         leftArrowImage = findViewById(R.id.leftArrow)
 
@@ -71,8 +68,7 @@ class CardViewTabLayoutActivity : FragmentActivity() {
                 dataChanged()
             }
         }
-
-        weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        binding.weekTitle?.text = DateUtility.getSevenString(adapter.offset)
         viewPager.adapter = adapter
         network()
 
@@ -88,7 +84,7 @@ class CardViewTabLayoutActivity : FragmentActivity() {
     }
 
     private fun dataChanged() {
-        weekTitle.text = DateUtility.getSevenString(adapter.offset)
+        binding.weekTitle?.text = DateUtility.getSevenString(adapter.offset)
         viewPager.adapter?.notifyItemRangeChanged(0, 7)
     }
 
