@@ -17,19 +17,17 @@
 package com.amazingtalker.assessment.cards
 
 import CoursesAdapter
-import CustomAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.integration.testapp.cards.Card
-import com.amazingtalker.assessment.ItemsViewModel
 
 import com.amazingtalker.assessment.R
+import com.amazingtalker.assessment.data.Timeline
 
 /** Inflates and populates a [View] representing a [Card]  */
 class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
@@ -47,21 +45,9 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
     /**
      * Updates the view to represent the passed in card
      */
-    fun bind(card: Card) {
-
-        view.setBackgroundResource(getColorRes(card))
-
-        // ArrayList of class ItemsViewModel
-        val data = ArrayList<ItemsViewModel>()
-
-        // This loop will create 20 Views containing
-        // the image with the count of view
-        for (i in 1..20) {
-            data.add(ItemsViewModel(androidx.appcompat.R.drawable.abc_btn_check_to_on_mtrl_000, "Item " + i))
-        }
-
+    fun bind(card: List<Timeline>) {
         // This will pass the ArrayList to our Adapter
-        val adapter = CoursesAdapter(data)
+        val adapter = CoursesAdapter(card)
 
         // Setting the Adapter with the recyclerview
         recyclerView.adapter = adapter

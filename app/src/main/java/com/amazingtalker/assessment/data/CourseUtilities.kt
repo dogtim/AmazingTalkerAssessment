@@ -25,25 +25,37 @@ class CourseUtilities {
                     val cmp = firstDate.compareTo(secondDate)
                     when {
                         cmp > 0 -> {
-                            mergedList.add(bookedList[bookedIterator])
+                            var item = bookedList[bookedIterator]
+                            item.available = false
+                            mergedList.add(item)
                             bookedIterator++
                         }
                         cmp < 0 -> {
-                            mergedList.add(availableList[availableIterator])
+                            var item = bookedList[availableIterator]
+                            item.available = true
+                            mergedList.add(item)
                             availableIterator++;
                         }
                         else -> { // It should not happen in this condition
-                            mergedList.add(availableList[availableIterator])
+                            var item = bookedList[availableIterator]
+                            item.available = true
+                            mergedList.add(item)
                             availableIterator++;
-                            mergedList.add(bookedList[bookedIterator])
+                            item = bookedList[bookedIterator]
+                            item.available = false
+                            mergedList.add(item)
                             bookedIterator++
                         }
                     }
                 } else if (availableIterator < availableList.size) {
-                    mergedList.add(availableList[availableIterator])
+                    var item = bookedList[availableIterator]
+                    item.available = true
+                    mergedList.add(item)
                     availableIterator++;
                 } else if (bookedIterator < bookedList.size) {
-                    mergedList.add(bookedList[bookedIterator])
+                    var item = bookedList[bookedIterator]
+                    item.available = false
+                    mergedList.add(item)
                     bookedIterator++
                 }
             }

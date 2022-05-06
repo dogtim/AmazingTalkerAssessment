@@ -1,3 +1,5 @@
+import android.content.ClipData
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amazingtalker.assessment.DateUtility
 import com.amazingtalker.assessment.ItemsViewModel
 import com.amazingtalker.assessment.R
+import com.amazingtalker.assessment.data.Timeline
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CoursesAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CoursesAdapter(private val mList: List<Timeline>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,10 +29,11 @@ class CoursesAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Ada
             val ItemsViewModel = mList[position]
 
             // sets the image to the imageview from our itemHolder class
-            holder.imageView.setImageResource(ItemsViewModel.image)
+            //holder.imageView.setImageResource(ItemsViewModel.image)
 
             // sets the text to the textview from our itemHolder class
-            holder.textView.text = ItemsViewModel.text
+            holder.textView.text = ItemsViewModel.start + ": " + ItemsViewModel.available
+            ItemsViewModel.start?.let { Log.i("dogtim", it) }
         }
 
     }

@@ -19,9 +19,10 @@ package com.amazingtalker.assessment.cards
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.integration.testapp.cards.Card
-import com.amazingtalker.assessment.data.Courses
+import com.amazingtalker.assessment.DateUtility
 import com.amazingtalker.assessment.data.Timeline
+import java.text.SimpleDateFormat
+import java.util.*
 
 class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
     public var offset = 0;
@@ -33,7 +34,13 @@ class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         courses?.let {
-            holder.bind(Card.DECK[position])
+
+            val day = DateUtility.getDayByFormat(offset + position, SimpleDateFormat(DateUtility.DATE_PATTERN_1, Locale.getDefault()))
+            val filteredValuesMap = it.filter { it ->
+                it.start?.contains(day) ?: false
+            }
+
+            holder.bind(filteredValuesMap)
         }
     }
 
@@ -44,7 +51,7 @@ class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
 
 class CardViewHolder internal constructor(private val cardView: CardView) :
     RecyclerView.ViewHolder(cardView.view) {
-    internal fun bind(card: Card) {
+    internal fun bind(card: List<Timeline>) {
         cardView.bind(card)
     }
 }

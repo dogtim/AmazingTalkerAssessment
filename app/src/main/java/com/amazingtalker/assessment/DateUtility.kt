@@ -14,8 +14,9 @@ import java.util.*
     - The Z stands for the Zero timezone, as it is offset by 0 from the Coordinated Universal Time (UTC).
  */
 object DateUtility {
+    const val DATE_PATTERN_1 = "yyyy-MM-dd"
 
-    private fun getDayByFormat(offset: Int = 0, dateFormat: SimpleDateFormat): String {
+    fun getDayByFormat(offset: Int = 0, dateFormat: SimpleDateFormat): String {
         return if (offset == 0) {
             dateFormat.format(Date())
         } else {
@@ -28,7 +29,7 @@ object DateUtility {
 
     // Title Template
     fun getSpecial(offset: Int = 0): String {
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
         return getDayByFormat(offset, dateFormat)
     }
 

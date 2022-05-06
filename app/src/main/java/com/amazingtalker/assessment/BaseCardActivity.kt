@@ -34,7 +34,7 @@ import com.google.gson.Gson
  * jump to arbitrary cards using setCurrentItem, either with or without smooth scrolling.
  */
 abstract class BaseCardActivity : FragmentActivity() {
-
+    private val TAG = BaseCardActivity::class.qualifiedName
     protected lateinit var viewPager: ViewPager2
     private lateinit var weekTitle: TextView
 
@@ -78,22 +78,18 @@ abstract class BaseCardActivity : FragmentActivity() {
 
     private fun network() {
         val queue = Volley.newRequestQueue(this)
-        var url1 = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-04-30T16%3A00%3A00.000Z"
-        val url = "https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=" + DateUtility.getSpecial()
-
+        val teacherName = "julia-shin"
+        val url = "https://en.amazingtalker.com/v1/guest/teachers/" + teacherName + "/schedule?started_at=" + DateUtility.getSpecial()
+        Log.d(TAG, "Request url: $url")
         val stringRequest = StringRequest(
             Request.Method.GET, url, { response ->
-                // Display the first 500 characters of the response string.
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
-                //assertEquals("2022-05-07T00:30:00Z", )
-                Log.i("dogtim", "url: " + url)
                 adapter.courses = CourseUtilities.callMe(coursesObject)
-                coursesObject.available?.get(0)?.start?.let { Log.i("dogtim", "what " + it) }
+                viewPager.adapter?.notifyItemRangeChanged(0, 7)
             }, {
                 Log.e("dogtim",  "That didn't work! " + it.message) }
         )
-
         queue.add(stringRequest)
     }
 }
