@@ -7,6 +7,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="grey_100"> #F5F5F5</color>
     <color name="grey_300"> #E0E0E0</color>
+    <color name="grey_800"> #444444</color>
     <color name="red_100">#F4C7C3</color>
     <color name="red_300">#E67C73</color>
     <color name="red_500">#DB4437</color>

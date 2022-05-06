@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.Timeline
@@ -21,9 +22,16 @@ class CoursesAdapter(private val timeLines: List<Timeline>) : RecyclerView.Adapt
     override fun onBindViewHolder(@Nullable holder:  RecyclerView.ViewHolder, position: Int) {
         if (holder is DesignViewHolder) {
             val timeline = timeLines[position]
+            var itemView = holder.itemView
+            holder.textView.text = timeline.start
+            if (timeline.available) {
+                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
+                holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_300))
+            } else {
+                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
+                holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+            }
 
-            holder.textView.text = timeline.start + ": " + timeline.available
-            timeline.start?.let { Log.i("dogtim", it) }
         }
 
     }
