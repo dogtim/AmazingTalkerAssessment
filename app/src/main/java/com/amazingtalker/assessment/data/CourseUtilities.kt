@@ -1,5 +1,6 @@
 package com.amazingtalker.assessment.data
 
+import android.text.format.Time
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -7,6 +8,28 @@ import kotlin.collections.ArrayList
 class CourseUtilities {
 
     companion object Merged {
+        // Merge available and booked data first, and then sort these data
+        fun handle(courses: Courses): List<Timeline> = run {
+            val mergedList = ArrayList<Timeline>()
+            courses.available?.let {
+                for (item in it) {
+                    item.available = true
+                    mergedList.add(item)
+                }
+            }
+            courses.booked?.let {
+                for (item in it) {
+                    item.available = false
+                    mergedList.add(item)
+                }
+            }
+
+            val result = mergedList.sortedWith(compareBy {
+                it.start
+            })
+
+            return result
+        }
         fun callMe(courses: Courses): ArrayList<Timeline> = run {
             val availableList = courses.available ?: ArrayList()
             val bookedList = courses.booked ?: ArrayList()

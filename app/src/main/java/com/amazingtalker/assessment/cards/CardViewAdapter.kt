@@ -16,6 +16,7 @@
 
 package com.amazingtalker.assessment.cards
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -39,7 +40,7 @@ class CardViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
             val filteredValuesMap = it.filter { it ->
                 it.start?.contains(day) ?: false
             }
-
+            Log.i("dogtim", " " + it.toString())
             holder.bind(filteredValuesMap)
         }
     }

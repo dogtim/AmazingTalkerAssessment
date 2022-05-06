@@ -85,7 +85,7 @@ abstract class BaseCardActivity : FragmentActivity() {
             Request.Method.GET, url, { response ->
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
-                adapter.courses = CourseUtilities.callMe(coursesObject)
+                adapter.courses = CourseUtilities.handle(coursesObject)
                 viewPager.adapter?.notifyItemRangeChanged(0, 7)
             }, {
                 Log.e("dogtim",  "That didn't work! " + it.message) }
