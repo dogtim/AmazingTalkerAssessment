@@ -18,7 +18,6 @@ package com.amazingtalker.assessment.activity
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.DateUtility
 import com.amazingtalker.assessment.cards.CardViewAdapter
@@ -32,11 +31,12 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.google.gson.Gson
 import java.util.*
 
+const val EXTRA_MESSAGE = "com.amazingtalker.assessment.extra"
+
 class CardViewTabLayoutActivity : FragmentActivity() {
     private val TAG = CardViewTabLayoutActivity::class.qualifiedName
     private lateinit var adapter: CardViewAdapter
     private lateinit var binding: ActivityTablayoutBinding
-
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTablayoutBinding.inflate(layoutInflater)
@@ -69,6 +69,11 @@ class CardViewTabLayoutActivity : FragmentActivity() {
                 tab.text = DateUtility.getSubtitleDate(adapter.offset + position)
             }
         }.attach()
+
+
+        binding.textButton.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun dataChanged() {

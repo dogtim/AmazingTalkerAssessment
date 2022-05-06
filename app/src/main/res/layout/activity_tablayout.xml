@@ -21,6 +21,13 @@
     android:orientation="vertical"
     tools:background="#FFFFFF">
 
+    <Button
+        android:id="@+id/textButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back button"
+        app:icon="@drawable/ic_baseline_keyboard_arrow_left_24"
+        style="@style/Widget.MaterialComponents.Button.TextButton.Icon" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="60dp">
@@ -30,7 +37,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="10dp"
-            android:background="@color/white"
             android:src="@drawable/ic_baseline_keyboard_arrow_left_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +52,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/rightArrow"
             app:layout_constraintStart_toEndOf="@+id/leftArrow"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText"/>
 
         <TextView
             android:id="@+id/timeZone"
@@ -58,14 +65,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/rightArrow"
             app:layout_constraintStart_toEndOf="@+id/leftArrow"
-            app:layout_constraintTop_toBottomOf="@+id/weekTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/weekTitle"
+            tools:ignore="HardcodedText" />
 
         <ImageView
             android:id="@+id/rightArrow"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="10dp"
-            android:background="@color/white"
             android:src="@drawable/ic_baseline_keyboard_arrow_right_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
