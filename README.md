@@ -5,7 +5,10 @@
   - [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt) 
     - Date Parsing: [SimpleDateFormat(“Z”) in Java](https://www.tutorialspoint.com/simpledateformat-z-in-java)
     - The difference between Date() and LocalDate()
-    - Practice Collections.filter
+    - Practice Collections 
+      - filter
+      - sortedWith and compareBy
+    - [Lambda expressions and anonymous functions are function literals](https://kotlinlang.org/docs/lambdas.html#lambda-expressions-and-anonymous-functions)
 - 2022/05/05
   - To download the https://github.com/android/views-widgets-samples.git and get some inspiration from it
   - To study the difference between ViewPager and ViewPager2 since last time I use the ViewPager is before 2019 year, it is time to upgrade my layout weapon.
