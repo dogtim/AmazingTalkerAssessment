@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_margin="10dp"
-    android:background="@color/grey_800"
-    app:cardElevation="20dp">
+    app:cardBackgroundColor="@color/yellow_100"
+    app:cardCornerRadius="15dp"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thicknessRatio="2">
 
     <TextView
         android:id="@+id/textView"

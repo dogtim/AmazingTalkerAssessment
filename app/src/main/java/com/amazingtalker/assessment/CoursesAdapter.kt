@@ -25,10 +25,10 @@ class CoursesAdapter(private val timeLines: List<Timeline>) : RecyclerView.Adapt
             var itemView = holder.itemView
             holder.textView.text = timeline.start
             if (timeline.available) {
-                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
+                //itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
                 holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_300))
             } else {
-                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
+                //itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
                 holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
             }
 
