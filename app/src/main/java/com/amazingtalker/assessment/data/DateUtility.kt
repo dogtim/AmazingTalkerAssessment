@@ -1,10 +1,9 @@
-package com.amazingtalker.assessment
+package com.amazingtalker.assessment.data
 
 import android.os.Build
 import androidx.annotation.RequiresApi
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.LocalDate
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.util.*

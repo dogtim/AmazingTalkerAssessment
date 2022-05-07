@@ -2,11 +2,10 @@ package com.amazingtalker.assessment
 
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
+import com.amazingtalker.assessment.data.DateUtility
 import com.google.gson.Gson
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import java.text.SimpleDateFormat
-import java.time.ZoneId
 import java.util.*
 
 /**

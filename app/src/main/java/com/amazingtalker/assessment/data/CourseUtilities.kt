@@ -1,8 +1,5 @@
 package com.amazingtalker.assessment.data
 
-import com.amazingtalker.assessment.DateUtility
-import java.text.SimpleDateFormat
-import java.util.*
 import kotlin.collections.ArrayList
 
 class CourseUtilities {

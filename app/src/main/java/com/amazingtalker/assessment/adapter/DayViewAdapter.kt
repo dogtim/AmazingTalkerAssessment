@@ -1,10 +1,9 @@
 package com.amazingtalker.assessment.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.amazingtalker.assessment.DateUtility
+import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.cards.CardView
 import com.amazingtalker.assessment.data.Timeline
 import java.text.SimpleDateFormat

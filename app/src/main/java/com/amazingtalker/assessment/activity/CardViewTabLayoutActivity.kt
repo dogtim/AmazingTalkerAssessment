@@ -3,7 +3,7 @@ package com.amazingtalker.assessment.activity
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
-import com.amazingtalker.assessment.DateUtility
+import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.adapter.DayViewAdapter
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses

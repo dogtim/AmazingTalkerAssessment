@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.amazingtalker.assessment.DateUtility
+import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.Timeline
 
