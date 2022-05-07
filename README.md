@@ -10,6 +10,8 @@ It is time to retrain myself and understand the modern language now.
 Make the sword sharp again !!!
 
 ## Timeline
+- 2022/05/07
+  - 
 - 2022/05/06
   - [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt) 
     - Date Parsing: [SimpleDateFormat(“Z”) in Java](https://www.tutorialspoint.com/simpledateformat-z-in-java)
@@ -38,7 +40,7 @@ Make the sword sharp again !!!
 
 ### :white_check_mark: Review the calendar of tutor
 - Please show it by week unit
-- You can not look the past infomation.
+- You can not look the past information.
  
 ### :white_check_mark: To show the local time zone after you switching the system setting 
 - The calendar will show the available and booked time according to the time zone

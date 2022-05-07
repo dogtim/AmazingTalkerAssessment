@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.amazingtalker.assessment.DateUtility
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.Timeline
 
@@ -24,7 +25,9 @@ class CoursesAdapter(private val timeLines: List<Timeline>) : RecyclerView.Adapt
         if (holder is DesignViewHolder) {
             val timeline = timeLines[position]
             var itemView = holder.itemView
-            holder.textView.text = timeline.start
+            timeline.start?.let {
+                holder.textView.text = DateUtility.hourAndMinutes(it)
+            }
             if (timeline.available) {
                 //itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
                 holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_300))

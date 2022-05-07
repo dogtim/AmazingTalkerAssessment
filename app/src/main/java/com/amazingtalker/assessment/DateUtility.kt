@@ -16,15 +16,23 @@ import java.util.*
  */
 object DateUtility {
     const val DATE_PATTERN_1 = "yyyy-MM-dd"
+    const val DATE_PATTERN_2 = "HH:mm"
+
     val STANDARD_FORMAT = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
 
     fun transformToLocalTime(dateStr: String, zone: TimeZone = TimeZone.getDefault()): String {
-        val df = DateUtility.STANDARD_FORMAT
+        val df = STANDARD_FORMAT
         df.timeZone = TimeZone.getTimeZone("UTC")
         val date = df.parse(dateStr)
         df.timeZone = zone
         val formattedDate = df.format(date)
         return formattedDate.toString()
+    }
+
+    fun hourAndMinutes(dateStr: String): String {
+        val df = STANDARD_FORMAT
+        val date = df.parse(dateStr)
+        return SimpleDateFormat(DATE_PATTERN_2, Locale.getDefault()).format(date).toString()
     }
 
     fun getDayByFormat(offset: Int = 0, dateFormat: SimpleDateFormat): String {

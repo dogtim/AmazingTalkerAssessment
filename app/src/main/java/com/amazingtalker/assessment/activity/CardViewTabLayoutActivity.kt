@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.DateUtility
-import com.amazingtalker.assessment.cards.CardViewAdapter
+import com.amazingtalker.assessment.adapter.DayViewAdapter
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
 import com.amazingtalker.assessment.databinding.ActivityTablayoutBinding
@@ -19,14 +19,14 @@ const val EXTRA_MESSAGE_TUTOR_NAME = "com.amazingtalker.assessment.extra"
 
 class CardViewTabLayoutActivity : FragmentActivity() {
     private val TAG = CardViewTabLayoutActivity::class.qualifiedName
-    private lateinit var adapter: CardViewAdapter
+    private lateinit var adapter: DayViewAdapter
     private lateinit var binding: ActivityTablayoutBinding
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTablayoutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        adapter = CardViewAdapter()
+        adapter = DayViewAdapter()
 
         binding.rightArrow.setOnClickListener {
             adapter.offset += 7
@@ -40,7 +40,7 @@ class CardViewTabLayoutActivity : FragmentActivity() {
             }
         }
         binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
-0
+
         val tz: TimeZone = TimeZone.getDefault()
         val timeZoneString = tz.id.toString() + ": " + tz.getDisplayName(false, TimeZone.SHORT)
         binding.timeZone.text = timeZoneString
@@ -49,7 +49,7 @@ class CardViewTabLayoutActivity : FragmentActivity() {
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             val adapter = binding.viewPager.adapter
-            if (adapter is CardViewAdapter) {
+            if (adapter is DayViewAdapter) {
                 tab.text = DateUtility.getSubtitleDate(adapter.offset + position)
             }
         }.attach()
