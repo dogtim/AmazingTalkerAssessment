@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.adapter.DayViewAdapter
+import com.amazingtalker.assessment.apis.FetchTutorTime
 import com.amazingtalker.assessment.data.Constant
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
@@ -22,6 +23,8 @@ class CalendarActivity : FragmentActivity() {
     private val TAG = CalendarActivity::class.qualifiedName
     private lateinit var adapter: DayViewAdapter
     private lateinit var binding: ActivityTablayoutBinding
+    private lateinit var fetchTutorTime: FetchTutorTime
+
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTablayoutBinding.inflate(layoutInflater)
@@ -75,13 +78,9 @@ class CalendarActivity : FragmentActivity() {
     }
 
     private fun network() {
-        val queue = Volley.newRequestQueue(this)
-        val name = intent.getStringExtra(EXTRA_MESSAGE_TUTOR_NAME)
-        val url =
-            "https://en.amazingtalker.com/v1/guest/teachers/" + name + "/schedule?started_at=" + DateUtility.getSpecial()
-        Log.d(TAG, "Request url: $url")
-        val stringRequest = StringRequest(
-            Request.Method.GET, url, { response ->
+        intent.getStringExtra(EXTRA_MESSAGE_TUTOR_NAME)?.let {
+            fetchTutorTime = FetchTutorTime(this, it)
+            fetchTutorTime.fetch({ response ->
                 val gson = Gson()
                 val coursesObject: Courses = gson.fromJson(response, Courses::class.java)
                 val tempList = CourseUtilities.handle(coursesObject)
@@ -90,8 +89,12 @@ class CalendarActivity : FragmentActivity() {
                 binding.viewPager.adapter?.notifyItemRangeChanged(0, Constant.SEVEN_DAYS)
             }, {
                 Log.e(TAG, "That didn't work! " + it.message)
-            }
-        )
-        queue.add(stringRequest)
+            })
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        fetchTutorTime?.cancel()
     }
 }

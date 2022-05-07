@@ -15,6 +15,8 @@ Make the sword sharp again !!!
     - [Localize your app](https://developer.android.com/guide/topics/resources/localization)
     - [Locale.LanguageRange](https://developer.android.com/reference/java/util/Locale.LanguageRange)
       - [AOSP example](https://android.googlesource.com/platform/packages/apps/Settings/+/master/res/)
+  - Study the Volley codes: A network performing Volley requests over an HttpStack.
+    - com.android.volley.toolbox.BasicNetwork
 - 2022/05/06
   - [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt) 
     - Date Parsing: [SimpleDateFormat(“Z”) in Java](https://www.tutorialspoint.com/simpledateformat-z-in-java)
