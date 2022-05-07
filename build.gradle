@@ -8,3 +8,10 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    coreVersion = "1.4.1-alpha06"
+    extJUnitVersion = "1.1.4-alpha06"
+    runnerVersion = "1.5.0-alpha03"
+    espressoVersion = "3.5.0-alpha06"
+}

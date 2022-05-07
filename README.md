@@ -9,6 +9,10 @@ It is time to retrain myself and understand the modern language now.
 
 Make the sword sharp again !!!
 
+### Development Environment
+- Android Studio (Bumble Bee 2021/01/01 Patch 3)
+- MacOS Monterey (12.3.1)
+
 ## Timeline
 - 2022/05/07
   - Support localization
@@ -17,6 +21,8 @@ Make the sword sharp again !!!
       - [AOSP example](https://android.googlesource.com/platform/packages/apps/Settings/+/master/res/)
   - Study the Volley codes: A network performing Volley requests over an HttpStack.
     - com.android.volley.toolbox.BasicNetwork
+  - Testing related resource
+    - [Testing-samples](https://github.com/android/testing-samples)
 - 2022/05/06
   - [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt) 
     - Date Parsing: [SimpleDateFormat(“Z”) in Java](https://www.tutorialspoint.com/simpledateformat-z-in-java)
@@ -60,7 +66,7 @@ Make the sword sharp again !!!
   - i.e. https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-05-07T08:51:32Z
 
 ### :white_check_mark: To support localization, English and tranditional Chinese
-### :hammer: Better have
+### :white_check_mark: Better have
 - Unit & UI testing codes
 
 ## TODO
