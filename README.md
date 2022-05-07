@@ -11,7 +11,10 @@ Make the sword sharp again !!!
 
 ## Timeline
 - 2022/05/07
-  - 
+  - Support localization
+    - [Localize your app](https://developer.android.com/guide/topics/resources/localization)
+    - [Locale.LanguageRange](https://developer.android.com/reference/java/util/Locale.LanguageRange)
+      - [AOSP example](https://android.googlesource.com/platform/packages/apps/Settings/+/master/res/)
 - 2022/05/06
   - [Date and Time on the Internet: Timestamps](https://www.ietf.org/rfc/rfc3339.txt) 
     - Date Parsing: [SimpleDateFormat(“Z”) in Java](https://www.tutorialspoint.com/simpledateformat-z-in-java)
@@ -54,7 +57,7 @@ Make the sword sharp again !!!
 - URL with two parameters, "tutor name"(julia-shin) and "start time"(2022-05-07T08:51:32Z).
   - i.e. https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-05-07T08:51:32Z
 
-### :hammer: To support localization, English and tranditional Chinese
+### :white_check_mark: To support localization, English and tranditional Chinese
 ### :hammer: Better have
 - Unit & UI testing codes
 

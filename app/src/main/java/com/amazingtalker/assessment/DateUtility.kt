@@ -16,9 +16,9 @@ import java.util.*
  */
 object DateUtility {
     const val DATE_PATTERN_1 = "yyyy-MM-dd"
-    const val DATE_PATTERN_2 = "HH:mm"
+    private const val DATE_PATTERN_2 = "HH:mm"
 
-    val STANDARD_FORMAT = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
+    private val STANDARD_FORMAT = SimpleDateFormat("$DATE_PATTERN_1'T'HH:mm:ss'Z'", Locale.getDefault())
 
     fun transformToLocalTime(dateStr: String, zone: TimeZone = TimeZone.getDefault()): String {
         val df = STANDARD_FORMAT

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="list_of_tutors">The list of Tutors</string>
+    <string name="app_name">AmazingTalker Assessment</string>
+    <string name="back">Go back</string>
+</resources>

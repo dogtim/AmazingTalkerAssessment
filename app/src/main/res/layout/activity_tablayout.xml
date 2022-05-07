@@ -25,7 +25,8 @@
         android:id="@+id/textButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back button"
+        android:text="@string/back"
+        android:textSize="25sp"
         app:icon="@drawable/ic_baseline_keyboard_arrow_left_24"
         style="@style/Widget.MaterialComponents.Button.TextButton.Icon" />
     <androidx.constraintlayout.widget.ConstraintLayout
