@@ -61,6 +61,12 @@ Make the sword sharp again !!!
 ### :hammer: Better have
 - Unit & UI testing codes
 
+## TODO
+- Record demo video and create release branch and set git tag
+- ViewModel pattern
+- Error Handling
+- Better layout for tutor list
+
 ## Reference
 - https://github.com/android
 - https://github.com/googlesamples

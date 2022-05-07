@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.adapter.DayViewAdapter
+import com.amazingtalker.assessment.data.Constant
 import com.amazingtalker.assessment.data.CourseUtilities
 import com.amazingtalker.assessment.data.Courses
 import com.amazingtalker.assessment.databinding.ActivityTablayoutBinding
@@ -17,8 +18,8 @@ import java.util.*
 
 const val EXTRA_MESSAGE_TUTOR_NAME = "com.amazingtalker.assessment.extra"
 
-class CardViewTabLayoutActivity : FragmentActivity() {
-    private val TAG = CardViewTabLayoutActivity::class.qualifiedName
+class CalendarActivity : FragmentActivity() {
+    private val TAG = CalendarActivity::class.qualifiedName
     private lateinit var adapter: DayViewAdapter
     private lateinit var binding: ActivityTablayoutBinding
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,25 +27,8 @@ class CardViewTabLayoutActivity : FragmentActivity() {
         binding = ActivityTablayoutBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        adapter = DayViewAdapter()
-
-        binding.rightArrow.setOnClickListener {
-            adapter.offset += 7
-            dataChanged()
-        }
-
-        binding.leftArrow.setOnClickListener {
-            if (adapter.offset > 0) {
-                adapter.offset -= 7
-                dataChanged()
-            }
-        }
-        binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
-
-        val tz: TimeZone = TimeZone.getDefault()
-        val timeZoneString = tz.id.toString() + ": " + tz.getDisplayName(false, TimeZone.SHORT)
-        binding.timeZone.text = timeZoneString
-        binding.viewPager.adapter = adapter
+        setupInteraction()
+        setupAdapter()
         network()
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
@@ -54,6 +38,31 @@ class CardViewTabLayoutActivity : FragmentActivity() {
             }
         }.attach()
 
+    }
+
+    private fun setupAdapter() {
+        adapter = DayViewAdapter()
+
+        binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
+
+        val tz: TimeZone = TimeZone.getDefault()
+        val timeZoneString = tz.id.toString() + ": " + tz.getDisplayName(false, TimeZone.SHORT)
+        binding.timeZone.text = timeZoneString
+        binding.viewPager.adapter = adapter
+    }
+
+    private fun setupInteraction() {
+        binding.rightArrow.setOnClickListener {
+            adapter.offset += Constant.SEVEN_DAYS
+            dataChanged()
+        }
+
+        binding.leftArrow.setOnClickListener {
+            if (adapter.offset > 0) {
+                adapter.offset -= Constant.SEVEN_DAYS
+                dataChanged()
+            }
+        }
 
         binding.textButton.setOnClickListener {
             onBackPressed()
@@ -62,14 +71,14 @@ class CardViewTabLayoutActivity : FragmentActivity() {
 
     private fun dataChanged() {
         binding.weekTitle.text = DateUtility.getSevenString(adapter.offset)
-        binding.viewPager.adapter?.notifyItemRangeChanged(0, 7)
+        binding.viewPager.adapter?.notifyItemRangeChanged(0, Constant.SEVEN_DAYS)
     }
 
     private fun network() {
         val queue = Volley.newRequestQueue(this)
         val name = intent.getStringExtra(EXTRA_MESSAGE_TUTOR_NAME)
-        val teacherName = name
-        val url = "https://en.amazingtalker.com/v1/guest/teachers/" + teacherName + "/schedule?started_at=" + DateUtility.getSpecial()
+        val url =
+            "https://en.amazingtalker.com/v1/guest/teachers/" + name + "/schedule?started_at=" + DateUtility.getSpecial()
         Log.d(TAG, "Request url: $url")
         val stringRequest = StringRequest(
             Request.Method.GET, url, { response ->
@@ -78,9 +87,10 @@ class CardViewTabLayoutActivity : FragmentActivity() {
                 val tempList = CourseUtilities.handle(coursesObject)
                 CourseUtilities.transformZone(tempList)
                 adapter.courses = tempList
-                binding.viewPager.adapter?.notifyItemRangeChanged(0, 7)
+                binding.viewPager.adapter?.notifyItemRangeChanged(0, Constant.SEVEN_DAYS)
             }, {
-                Log.e("dogtim",  "That didn't work! " + it.message) }
+                Log.e(TAG, "That didn't work! " + it.message)
+            }
         )
         queue.add(stringRequest)
     }

@@ -23,28 +23,19 @@ class CoursesAdapter(private val timeLines: List<Timeline>) :
     override fun onBindViewHolder(@Nullable holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DesignViewHolder) {
             val timeline = timeLines[position]
-            var itemView = holder.itemView
+            val itemView = holder.itemView
             timeline.start?.let {
                 holder.textView.text = DateUtility.hourAndMinutes(it)
             }
-            if (timeline.available) {
-                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
-                holder.textView.setTextColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        R.color.green_300
-                    )
+            val backgroundColor = if (timeline.available) R.color.green_100 else R.color.grey_800
+            val textColor = if (timeline.available) R.color.green_300 else R.color.black
+            itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, backgroundColor))
+            holder.textView.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    textColor
                 )
-            } else {
-                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
-                holder.textView.setTextColor(
-                    ContextCompat.getColor(
-                        itemView.context,
-                        R.color.black
-                    )
-                )
-            }
-
+            )
         }
 
     }

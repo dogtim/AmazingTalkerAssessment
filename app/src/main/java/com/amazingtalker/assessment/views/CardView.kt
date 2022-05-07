@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.amazingtalker.assessment.cards
+package com.amazingtalker.assessment.views
 
 import com.amazingtalker.assessment.adapter.CoursesAdapter
 import android.view.LayoutInflater

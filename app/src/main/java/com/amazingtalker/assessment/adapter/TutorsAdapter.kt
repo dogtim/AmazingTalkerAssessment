@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.amazingtalker.assessment.R
-import com.amazingtalker.assessment.activity.CardViewTabLayoutActivity
+import com.amazingtalker.assessment.activity.CalendarActivity
 import com.amazingtalker.assessment.activity.EXTRA_MESSAGE_TUTOR_NAME
 
 class TutorsAdapter(private val timeLines: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -28,7 +28,7 @@ class TutorsAdapter(private val timeLines: List<String>) : RecyclerView.Adapter<
             val context = holder.itemView.context
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, CardViewTabLayoutActivity::class.java).apply {
+                val intent = Intent(context, CalendarActivity::class.java).apply {
                     putExtra(EXTRA_MESSAGE_TUTOR_NAME, tutorName)
                 }
 
