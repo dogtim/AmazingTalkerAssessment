@@ -48,7 +48,7 @@ Make the sword sharp again !!!
 ### :white_check_mark: To show the local time zone after you switching the system setting 
 - The calendar will show the available and booked time according to the time zone
 
-### :hammer: To show available and booked times 
+### :white_check_mark: To show available and booked times 
 - To get the time data from backend API, and split the time to small pieice by unit of one half hour
 - To show grey color in booked time
 - To show green color in available time

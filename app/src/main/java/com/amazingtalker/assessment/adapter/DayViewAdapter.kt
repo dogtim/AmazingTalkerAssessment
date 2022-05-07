@@ -20,7 +20,10 @@ class DayViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
         courses?.let {
 
-            val day = DateUtility.getDayByFormat(offset + position, SimpleDateFormat(DateUtility.DATE_PATTERN_1, Locale.getDefault()))
+            val day = DateUtility.getDayByFormat(
+                offset + position,
+                SimpleDateFormat(DateUtility.DATE_PATTERN_1, Locale.getDefault())
+            )
             val filteredValuesMap = it.filter { it ->
                 it.start?.contains(day) ?: false
             }
@@ -29,6 +32,7 @@ class DayViewAdapter : RecyclerView.Adapter<CardViewHolder>() {
         }
     }
 
+    // The count of days in week
     override fun getItemCount(): Int {
         return 7
     }

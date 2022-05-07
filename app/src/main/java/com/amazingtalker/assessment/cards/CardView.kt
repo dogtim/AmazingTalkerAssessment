@@ -21,18 +21,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.integration.testapp.cards.Card
 
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.Timeline
 
 class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
-    val view: View = layoutInflater.inflate(R.layout.item_card_layout, container, false)
+    val view: View = layoutInflater.inflate(R.layout.days_view, container, false)
 
-    private val recyclerView: RecyclerView
+    private var recyclerView: RecyclerView
 
     init {
         recyclerView = view.findViewById<RecyclerView>(R.id.courses_recyclerview)
@@ -40,9 +38,7 @@ class CardView(layoutInflater: LayoutInflater, container: ViewGroup?) {
     }
 
     fun bind(card: List<Timeline>) {
-        // This will pass the ArrayList to our Adapter
         val adapter = CoursesAdapter(card)
-        // Setting the Adapter with the recyclerview
         recyclerView.adapter = adapter
     }
 

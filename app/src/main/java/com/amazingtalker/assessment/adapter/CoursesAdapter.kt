@@ -11,17 +11,16 @@ import com.amazingtalker.assessment.data.DateUtility
 import com.amazingtalker.assessment.R
 import com.amazingtalker.assessment.data.Timeline
 
-class CoursesAdapter(private val timeLines: List<Timeline>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class CoursesAdapter(private val timeLines: List<Timeline>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    // create new views
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.card_view_timeline, parent, false)
+            .inflate(R.layout.card_view_timeline, parent, false)
         return DesignViewHolder(view)
     }
 
-    // binds the list items to a view
-    override fun onBindViewHolder(@Nullable holder:  RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(@Nullable holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DesignViewHolder) {
             val timeline = timeLines[position]
             var itemView = holder.itemView
@@ -29,11 +28,21 @@ class CoursesAdapter(private val timeLines: List<Timeline>) : RecyclerView.Adapt
                 holder.textView.text = DateUtility.hourAndMinutes(it)
             }
             if (timeline.available) {
-                //itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
-                holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.green_300))
+                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.green_100))
+                holder.textView.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.green_300
+                    )
+                )
             } else {
-                //itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
-                holder.textView.setTextColor(ContextCompat.getColor(itemView.context, R.color.black))
+                itemView.setBackgroundColor(ContextCompat.getColor(itemView.context, R.color.grey_800))
+                holder.textView.setTextColor(
+                    ContextCompat.getColor(
+                        itemView.context,
+                        R.color.black
+                    )
+                )
             }
 
         }
