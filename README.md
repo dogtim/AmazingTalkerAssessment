@@ -1,4 +1,13 @@
-# AmazingTalker Assessment by a Kotlin newbie is me woooooooohhhhh
+# AmazingTalker Assessment
+
+## Abstract
+To get started learning Kotlin. Only developed Android with Kotlin within one week.
+
+Get back the coding and programming power by the assessment since the recent two years I am doing too many management tasks.
+
+It is time to retrain myself and understand the modern language now.
+
+Make the sword sharp again !!!
 
 ## Timeline
 - 2022/05/06
@@ -24,7 +33,8 @@
 - 2022/05/04 at 15:20, receive the exam and should finish it by Kotlin, but I do not develop Kotlin over 3 days yet.
   - 2022/05/04 create the project and give simple layout
   - I should complete the assessment in three days, aka 72 hours, The deadline is on 2022/05/07 at 15:20
-## TODO
+
+## Requirements
 - To support English and Traditional Chinese
 - To support Landscape and Portrait
 - Test of Unit and Instrumentation

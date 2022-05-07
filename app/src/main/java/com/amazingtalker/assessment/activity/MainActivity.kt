@@ -26,23 +26,20 @@ import com.amazingtalker.assessment.adapter.TutorsAdapter
 import com.amazingtalker.assessment.databinding.ActivityTutorsBinding
 
 class MainActivity : FragmentActivity() {
-    private val TAG = MainActivity::class.qualifiedName
     private lateinit var adapter: TutorsAdapter
     private lateinit var binding: ActivityTutorsBinding
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTutorsBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
+        setContentView(binding.root)
+        setupAdapter()
+    }
 
-        adapter = TutorsAdapter(listOf("A", "B", "C"))
-        binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(view.context)
+    private fun setupAdapter() {
+        adapter = TutorsAdapter(listOf("julia-shin", "jeffrey-alan", "e1ca4e2f-256c-405e-a30b-4c8bbba4d58b", "Unknown"))
+        binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         binding.tutorsRecyclerView.adapter = adapter
-        // getting the recyclerview by its id
-        // this creates a vertical layout Manager
-        getActionBar()?.setDisplayHomeAsUpEnabled(true);
-
     }
 
 }
