@@ -5,7 +5,7 @@ import kotlin.collections.ArrayList
 class CourseUtilities {
 
     companion object Merged {
-        // Merge available and booked data first, and then sort these data
+        /// Merge available and booked data first, and then sort these data
         fun handle(courses: Courses): List<Timeline> = run {
             val mergedList = ArrayList<Timeline>()
 
@@ -17,6 +17,7 @@ class CourseUtilities {
                             start = item.start,
                             end = item.end,
                             available = item.available)
+                        // Split the time to the unit of half hour
                         while (temp.start != null && endTime != temp.start) {
                             mergedList.add(temp)
                             temp = item.copy(
