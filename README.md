@@ -35,10 +35,26 @@ Make the sword sharp again !!!
   - I should complete the assessment in three days, aka 72 hours, The deadline is on 2022/05/07 at 15:20
 
 ## Requirements
-- To support English and Traditional Chinese
-- To support Landscape and Portrait
-- Test of Unit and Instrumentation
-- Add comment & UML chart
+
+### :white_check_mark: Review the calendar of tutor
+- Please show it by week unit
+- You can not look the past infomation.
+ 
+### :white_check_mark: To show the local time zone after you switching the system setting 
+- The calendar will show the available and booked time according to the time zone
+
+### :hammer: To show available and booked times 
+- To get the time data from backend API, and split the time to small pieice by unit of one half hour
+- To show grey color in booked time
+- To show green color in available time
+
+### :white_check_mark: Backend API of time data
+- URL with two parameters, "tutor name"(julia-shin) and "start time"(2022-05-07T08:51:32Z).
+  - i.e. https://en.amazingtalker.com/v1/guest/teachers/julia-shin/schedule?started_at=2022-05-07T08:51:32Z
+
+### :hammer: To support localization, English and tranditional Chinese
+### :hammer: Better have
+- Unit & UI testing codes
 
 ## Reference
 - https://github.com/android
